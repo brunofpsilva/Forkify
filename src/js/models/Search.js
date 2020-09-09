@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { error } from 'jquery';
 
 export default class Search {
     constructor(query) {
