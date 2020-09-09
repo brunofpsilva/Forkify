@@ -21,7 +21,7 @@ const limitRecipeTitle = (title, limit = 17) => {
     }
 
     return title;
-}
+};
 
 const renderRecipe = recipe => {
     const markup = `
