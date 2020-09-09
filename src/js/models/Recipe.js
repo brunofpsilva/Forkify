@@ -15,7 +15,7 @@ export default class Search {
             this.ingredients = res.data.recipe.ingredients;
         }
         catch (err) {
-            alert(err);
+            alert('Error processing recipe!');
         }
     }
 
