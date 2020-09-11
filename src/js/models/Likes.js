@@ -1,11 +1,10 @@
-import uniqid from 'uniqid'
 
 export default class Likes {
     constructor() {
         this.likes = [];
     }
 
-    addLike(id, title, author,) {
+    addLike(id, title, author, img) {
         const like = {
             id,
             title,
@@ -26,6 +25,6 @@ export default class Likes {
     }
 
     getNumLikes() {
-        this.likes.length;
+        return this.likes.length;
     }
 }
