@@ -2,6 +2,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
+import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
@@ -108,7 +109,6 @@ const controlRecipe = async () => {
 /**
  * LIST CONTROLLER
  */
-
 const controlList = () => {
     // Create a new list if there is none yet
     if (!state.list) state.list = new List();
@@ -119,6 +119,42 @@ const controlList = () => {
         listView.renderItem(item);
     });
 }
+
+/**
+ * LIKES CONTROLLER
+ */
+const controlLike = () => {
+    // Create a new Likes if there is none yet
+    if (!state.likes) state.likes = new Likes();
+    const currentID = state.recipe.id;
+
+    // User has not yet liked current recipe
+    if (!state.likes.isLiked(currentID)) {
+        // Add like to the state
+        const newLike = state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
+
+        // Toggle the like button
+
+        // Add like to the UI
+        console.log(state.likes);
+
+    } // User has not liked current recipe
+    else {
+        // Remove like from the state
+        state.likes.deleteLike(currentID);
+
+        // Toggle the like button
+
+        // Remove like from UI list 
+        console.log(state.likes);
+    }
+};
+
 
 // Handle deelte and update list item events
 elements.shopping.addEventListener('click', e => {
@@ -151,7 +187,12 @@ elements.recipe.addEventListener('click', e => {
         state.recipe.updateServings('inc');
         recipeView.updateServingIngredients(state.recipe);
     } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')) {
+        //Add ingredients to shopping list
         controlList();
+    }
+    else if (e.target.matches('.recipe__love, .recipe__love *')) {
+        // Like controller
+        controlLike();
     }
 });
 
