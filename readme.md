@@ -141,3 +141,5 @@ pepperoni;
 salami;
 ribs;
 
+
+Project from Jonas Schmedtmann Javascript course.
